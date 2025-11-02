@@ -1,0 +1,172 @@
+
+
+$color_sous_title: rgb(172, 166, 166);
+$color_i1: rgb(46, 46, 206);
+$color_i2: rgb(19, 224, 19);
+$color_ilast: rgb(101, 101, 250);
+$color_i4: rgb(192, 75, 33);
+$font_size: 2rem;
+$border_radius:50%;
+
+
+%image {
+  width: 100px;
+  height: 100px;
+  border-radius: $border_radius;
+}
+%image_media{
+     width: 100px;
+  height: 100px;
+}
+%div {
+  background-color: rgb(232, 230, 230);
+  padding: 20px;
+  border-radius: $border_radius;
+}
+%design_chaque_statistique {
+  box-shadow: 0 0 10px black;
+  width: 200px;
+  height: 120px;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+
+
+
+
+@mixin responsive($breakpoint){
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+@mixin flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+@mixin flex_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin btn {
+  background-color: $color_ilast;
+  border: 0;
+  border-radius: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+@mixin grid_statistique {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 40px;
+}
+
+
+
+
+
+header {
+  @include flex();
+}
+
+header img {
+  @extend %image;
+  @include responsive(768px){
+     width: 80px;
+  height: 80px;
+  }
+}
+
+.request {
+  @include flex();
+}
+
+p {
+  color: $color_sous_title;
+}
+
+.request button {
+  @include btn();
+  width: 12rem;
+  height: 4rem;
+}
+
+.btn_appoint {
+  @include flex_btn();
+  margin-top: $font_size;
+
+  button {
+    @include btn();
+    height: 3rem;
+    width: 30rem;
+  }
+}
+
+.patient_review {
+  @include flex();
+}
+
+.comunites {
+  @include flex();
+
+  div {
+    @extend %div;
+
+    &:first-child i {
+      color: $color_i1;
+    }
+    &:nth-child(2) i {
+      color: $color_i2;
+    }
+    &:last-child i {
+      color: $color_ilast;
+    }
+  }
+}
+
+
+
+.statistique {
+  @include grid_statistique();
+  margin-top: 40px;
+
+  @include responsive(768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .sta {
+    @extend %design_chaque_statistique;
+
+    @include responsive(768px) {
+      width: 400px;
+    }
+  }
+
+  .i1 {
+    color: $color_i1;
+    font-size: $font_size;
+  }
+
+  .i2 {
+    color: $color_i2;
+    font-size: $font_size;
+  }
+
+  .i3 {
+    color: $color_ilast;
+    font-size: $font_size;
+  }
+
+  .i4 {
+    color: $color_i4;
+    font-size: $font_size;
+  }
+}
